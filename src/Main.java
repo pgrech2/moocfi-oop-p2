@@ -1,18 +1,59 @@
-import java.io.File;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello");
-        String pathName = "filename.txt";
-        FileHandler handler = new FileHandler();
-        File file = new File(pathName);
+        Book book1 = new Book("Book One", 1900);
+        Book book2 = new Book("Book Two", 1901);
+
+        System.out.println(book1.getName() + " was published in " + book1.getPublishingYear());
+
+        /* 33.6 OBJECT */
+        Person paul = new Person("Paul");
+        Person lauren = new Person("Lauren");
+
+        Account salaryAccount = new Account("sal-act");
+        Account householdAccount = new Account("hh-act");
+
+        paul.addAccount(salaryAccount);
+        paul.addAccount(householdAccount);
+        lauren.addAccount(householdAccount);
+
+        System.out.println("Money on Paul's accounts: " + paul.totalMoney());
+        System.out.println("Money on lauren's accounts: " + lauren.totalMoney());
+        System.out.println();
+
+        salaryAccount.deposit(150000);
+
+        System.out.println("Money on Paul's accounts: " + paul.totalMoney());
+        System.out.println("Money on lauren's accounts: " + lauren.totalMoney());
+        System.out.println();
+
+        householdAccount.deposit(10000);
+
+        System.out.println("Money on Paul's accounts: " + paul.totalMoney());
+        System.out.println("Money on lauren's accounts: " + lauren.totalMoney());
+        System.out.println();
+
+        /* 33.7 The structure of a program */
+        Scanner reader = new Scanner(System.in);
+        UserInterface ui = new UserInterface(reader);
+        // ui.start();
+
+        /* 35.1 */
+        Person matti = new Person("Matti");
+        if (matti.enoughMoneyForSingleTicket()) {
+            System.out.println("Let's buy!");
+        } else {
+            System.out.println("I'm broke : (");
+        }
 
 
-        handler.writeToFile(pathName, "Writing First Time");
-        handler.readFile(file);
 
-        handler.writeToFile(pathName, "Writing Second Time");
-        handler.readFile(file);
+
+
+
+
+
     }
 }
