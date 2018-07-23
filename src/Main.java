@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
 public class Main {
@@ -48,11 +49,14 @@ public class Main {
             System.out.println("I'm broke : (");
         }
 
+        System.out.println("\n");
+        String string = "string";
+        System.out.println("String: " + string);
+        Serializable serializableString = string;
+        CharSequence charSequenceString = string;
+        Comparable<String> comparableString = string;
 
-
-
-
-
+        System.out.println(charSequenceString.subSequence(1, 4));
 
 
     }

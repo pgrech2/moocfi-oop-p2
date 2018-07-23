@@ -42,7 +42,7 @@ public class ex4ThingSuitcaseContainer {
 
         // Exercise 4.5
         Thing heaviest = suitcase2.heaviestThing();
-        System.out.println("The heaviest thing: " + heaviest);
+        System.out.println("The heaviest moving: " + heaviest);
 
         // Exercise 4.6
         Suitcase tomsCase = new Suitcase(10);
