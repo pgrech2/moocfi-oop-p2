@@ -4,12 +4,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Book book1 = new Book("Book One", 1900);
-        Book book2 = new Book("Book Two", 1901);
-
-        System.out.println(book1.getName() + " was published in " + book1.getPublishingYear());
 
         /* 33.6 OBJECT */
+        /*
         Person paul = new Person("Paul");
         Person lauren = new Person("Lauren");
 
@@ -35,11 +32,13 @@ public class Main {
         System.out.println("Money on Paul's accounts: " + paul.totalMoney());
         System.out.println("Money on lauren's accounts: " + lauren.totalMoney());
         System.out.println();
+        */
+
 
         /* 33.7 The structure of a program */
         Scanner reader = new Scanner(System.in);
         UserInterface ui = new UserInterface(reader);
-        // ui.start();
+
 
         /* 35.1 */
         Person matti = new Person("Matti");
@@ -57,6 +56,7 @@ public class Main {
         Comparable<String> comparableString = string;
 
         System.out.println(charSequenceString.subSequence(1, 4));
+
 
 
     }
