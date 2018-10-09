@@ -17,4 +17,6 @@ public class ex32DifferentBoxes {
         System.out.println(coffeeBox.isInTheBox(new Thing("Pirkka")));
         System.out.println(coffeeBox.isInTheBox(new Thing("Kopi Luwak")));
     }
+
+
 }
