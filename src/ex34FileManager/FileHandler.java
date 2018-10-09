@@ -1,43 +1,51 @@
+package ex34FileManager;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
 
-    public static void readFile(File f) {
+    public ArrayList<String> read(String fileName) {
         Scanner reader = null;
+        File file = new File(fileName);
 
         try {
-            reader  = new Scanner(f);
+            reader  = new Scanner(file);
         } catch (Exception e) {
             System.out.println("Failed to read file: " + e.getMessage());
-            return;
+            return null;
         }
+
+        ArrayList<String> lines = new ArrayList<>();
 
         while (reader.hasNextLine()){
             String line = reader.nextLine();
-            System.out.println(line);
+            lines.add(line);
         }
         reader.close();
+
+        return lines;
     }
 
-    public static void writeToFile(String pathName, String text) {
-
+    public void save (String file, String text) {
         try {
-            FileWriter writer = new FileWriter(pathName);
+            FileWriter writer = new FileWriter(file);
             writer.write(text);
             writer.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Failed to write file: " + e.getMessage());
         }
-
     }
 
-    public static void appendToFile(String pathName, String text) {
+    public void save (String file, ArrayList<String> lines){
         try {
-            FileWriter writer = new FileWriter(pathName, true);
-            writer.write(text);
+            FileWriter writer = new FileWriter(file, true);
+            for(String line : lines) {
+                writer.write(line + "\n");
+            }
             writer.close();
         } catch (IOException e) {
             System.out.println("Failed to append file: " + e.getMessage());
