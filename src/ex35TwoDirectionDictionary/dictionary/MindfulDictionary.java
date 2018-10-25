@@ -2,7 +2,6 @@ package ex35TwoDirectionDictionary.dictionary;
 
 import ex34FileManager.FileHandler;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MindfulDictionary {
@@ -75,5 +74,4 @@ public class MindfulDictionary {
             this.dictionaryReverse.remove(word);
         }
     }
-
 }

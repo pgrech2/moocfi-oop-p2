@@ -2,7 +2,6 @@ package ex35TwoDirectionDictionary.dictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Dictionary {
     private HashMap<String, String> dictionary = new HashMap<>();
