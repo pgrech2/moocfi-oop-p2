@@ -1,55 +1,69 @@
 package ex46FilmReference.reference;
 
-import ex46FilmReference.reference.domain.*;
+import ex46FilmReference.reference.domain.Film;
+import ex46FilmReference.reference.domain.Person;
+import ex46FilmReference.reference.domain.Rating;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RatingRegister {
 
-    private Map<Person, Map<Film, List<Rating>>> ratingRegister;
+    private Map<Film, List<Rating>> filmRatings;
+    private Map<Person, Map<Film, Rating>> personalRatings;
 
     public RatingRegister() {
-        this.ratingRegister = new HashMap<>();
+        this.filmRatings = new HashMap<>();
+        this.personalRatings = new HashMap<>();
     }
 
-    public void addRating(Person person, Film film, Rating rating){
-        Map<Film, List<Rating>> filmRatings = new HashMap<>();
+    // RATING REGISTER PART 1;
+    public void addRating(Film film, Rating rating) {
         List<Rating> ratings = new ArrayList<>();
-
-        if (ratingRegister.containsKey(person)) {
-            filmRatings = ratingRegister.get(person);
-            if (filmRatings.containsKey(film)) {
-                ratings = filmRatings.get(film);
-            }
+        if (filmRatings.containsKey(film)) {
+            ratings = filmRatings.get(film);
         }
-
         ratings.add(rating);
         filmRatings.put(film, ratings);
-        ratingRegister.put(person, filmRatings);
     }
 
     public List<Rating> getRatings(Film film) {
-        List<Rating> allRatings = new ArrayList<>();
-        Iterator personIterator = ratingRegister.values().iterator();
-        while (personIterator.hasNext()){
-            Map<Film, List<Rating>> filmRatings = (Map<Film, List<Rating>>) personIterator.next();
-            List<Film> films = new ArrayList<Film>(filmRatings.keySet()) ;
-            for(Film f : films) {
-                if (f == film) {
-                    allRatings.addAll(filmRatings.get(f));
-                }
-            }
-        }
-        return allRatings;
+        return filmRatings.get(film);
     }
 
+    public Map<Film, List<Rating>> filmRatings() {
+        return filmRatings;
+    }
 
-    public Map<Film, List<Rating>> getPersonalRatings(Person person){
-        return ratingRegister.get(person);
+    // RATING REGISTER PART 2;
+    public void addRating(Person person, Film film, Rating rating){
+        Map<Film, Rating> personalFilmRatings = new HashMap<>();
+        if (personalRatings.containsKey(person)) {
+            personalFilmRatings = personalRatings.get(person);
+        }
+        if (!personalFilmRatings.containsKey(film)) {
+            personalFilmRatings.put(film, rating);
+            personalRatings.put(person, personalFilmRatings);
+            addRating(film, rating);
+        }
+    }
 
+    public Rating getRating(Person person, Film film){
+        Rating rating = personalRatings.get(person).get(film);
+        if (rating == null) {
+            rating = Rating.NOT_WATCHED;
+        }
+        return rating;
+    }
+
+    public Map<Film, Rating> getPersonalRatings(Person person){
+        return personalRatings.get(person);
     }
 
     public List<Person> reviewers(){
-        return new ArrayList<Person>(ratingRegister.keySet());
+        return new ArrayList<Person>(personalRatings.keySet());
     }
+
 }
