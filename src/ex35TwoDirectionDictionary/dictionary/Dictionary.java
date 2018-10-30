@@ -1,10 +1,16 @@
 package ex35TwoDirectionDictionary.dictionary;
 
+import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Dictionary {
-    private HashMap<String, String> dictionary = new HashMap<>();
+    private Map<String, String> dictionary;
+
+    public Dictionary() {
+         this.dictionary = new HashMap<>();
+    }
 
     public void add (String word, String translation) {
         if (!this.dictionary.containsKey(word)) {
@@ -25,11 +31,9 @@ public class Dictionary {
         }
     }
 
-    public ArrayList<String> words () {
-        ArrayList<String> dictKeys = new ArrayList<>();
-        for(String key : this.dictionary.keySet()) {
-            dictKeys.add(key);
-        }
+    public List<String> words () {
+        List<String> dictKeys = new ArrayList<>();
+        dictKeys.addAll(this.dictionary.keySet());
         return dictKeys;
     }
 }
