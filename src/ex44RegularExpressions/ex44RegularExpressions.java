@@ -19,10 +19,16 @@ public class ex44RegularExpressions {
     }
 
     private static boolean isAWeekDay(String string) {
-        return string.toLowerCase().matches("(mon|tues|wed|thurs|fri)(.*)");
+        if (string != null){
+            return string.toLowerCase().matches("(mon|tues|wed|thurs|fri)(.*)");
+        }
+        return false;
     }
 
     public static boolean allVowels(String string) {
-        return string.toLowerCase().matches("[aeiou]{1,}");
+        if (string != null) {
+            return string.toLowerCase().matches("[aeiou]{1,}");
+        }
+        return false;
     }
 }
