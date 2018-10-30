@@ -2,10 +2,11 @@ package ex45EnumAndIterator.personnel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Employees {
 
-    private ArrayList<Person> persons;
+    private List<Person> persons;
 
     public Employees() {
         persons = new ArrayList<>();
@@ -16,9 +17,8 @@ public class Employees {
     }
 
     public void add(ArrayList<Person> persons) {
-        Iterator<Person> iterator = persons.iterator();
-        while (iterator.hasNext()){
-            persons.add(iterator.next());
+        if (!persons.isEmpty()) {
+            this.persons.addAll(persons);
         }
     }
 
